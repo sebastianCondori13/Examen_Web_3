@@ -4,7 +4,7 @@
 
 Repositorio: https://github.com/sebastianCondori13/Examen_Web_3. El reparto de módulos previsto es API para Sebastián, web para Adrián y móvil para Facundo; pruebas y documentación forman el cuarto bloque compartido. Las ramas de trabajo son feature/sebastian-api, feature/adrian-web, feature/facundo-mobile y chore/integracion-pruebas. Se integran en dev y luego en main mediante pull requests.
 
-La importación del ZIP se publica con la conexión autenticada de sebastianCondori13 para completar la entrega. Los nombres de las ramas no implican que cada compañero autenticó su publicación ni demuestran autoría original del desarrollo. El historial registra importaciones actuales del proyecto existente. PLAN_PUBLICACION.md detalla la identidad efectiva utilizada.
+La importación inicial del ZIP se publicó con la conexión autenticada de sebastianCondori13. Mediante una corrección autorizada, el commit web registra a AdrianSVJ como autor y el móvil a facundorojasgastanaga-dev; GitHub vincula esos registros con sus cuentas. Se conserva a Sebastián como committer de ambas importaciones. La corrección se ejecutó con GitHub Actions y dejó respaldos del historial previo. Estos registros distinguen autoría del commit, creación del objeto y autenticación de la publicación; no afirman sesiones personales de los compañeros. PLAN_PUBLICACION.md detalla las identidades y la corrección.
 
 Las secciones siguientes conservan la guía general para aportes posteriores verificables.
 
