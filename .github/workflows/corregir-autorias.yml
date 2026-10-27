@@ -1,4 +1,4 @@
-name: Aplicar corrección autorizada de autorías
+name: Revisar corrección de autorías
 on:
   push:
     branches: [chore/corregir-autorias]
@@ -6,14 +6,14 @@ on:
       - .github/workflows/corregir-autorias.yml
       - .github/scripts/repair_authorship.py
 permissions:
-  contents: write
+  contents: read
 jobs:
-  apply:
+  preview:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
         with:
           fetch-depth: 0
-          persist-credentials: true
-      - name: Corregir autores con respaldo y protección de concurrencia
-        run: python .github/scripts/repair_authorship.py --apply
+          persist-credentials: false
+      - name: Preparar corrección sin publicar
+        run: python .github/scripts/repair_authorship.py
