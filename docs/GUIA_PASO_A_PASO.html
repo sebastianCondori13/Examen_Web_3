@@ -1,0 +1,508 @@
+<!doctype html><html lang="es"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>Guía paso a paso de SportHub</title><style>
+*{box-sizing:border-box}html{scroll-behavior:smooth}body{font:16px/1.75 'Segoe UI',Arial,sans-serif;margin:0;background:#f6f5f8;color:#35313e}header{padding:45px max(25px,calc((100vw - 1120px)/2));background:#18151f;color:#d5c1ee}header b{font-size:31px;color:#fff;letter-spacing:-1px}header p{font-size:13px;margin:5px 0}header button{float:right;border:1px solid #6e5b83;border-radius:8px;padding:10px 16px;background:#302438;color:#eadcfb;cursor:pointer}.layout{max-width:1180px;margin:auto;display:grid;grid-template-columns:250px minmax(0,1fr);gap:35px;padding:40px 25px}aside{position:sticky;top:25px;height:calc(100vh - 50px);overflow:auto;font-size:12px;padding-right:10px}aside strong{color:#897396;font-size:10px;letter-spacing:1.6px}aside ul{list-style:none;padding:0}aside li{margin-bottom:11px;line-height:1.55}aside a{color:#78668d;text-decoration:none}aside a:hover{text-decoration:underline}main{background:white;padding:40px 45px;border:1px solid #e9e5ee;border-radius:13px;min-width:0}h1{font-size:34px;line-height:1.2;letter-spacing:-1px;color:#17131d;margin:0 0 18px}h2{font-size:24px;line-height:1.3;margin-top:48px;padding-top:12px;color:#201926;scroll-margin-top:20px}h3{color:#231b2c}p{margin:16px 0}li{margin:9px 0}a{color:#77529f;overflow-wrap:anywhere}strong{color:#302339}code{font-family:Consolas,monospace;font-size:13px}pre{overflow:auto;background:#211c2a;color:#f0e8f6;border-radius:9px;padding:19px 21px;line-height:1.7}table{border-collapse:collapse;width:100%;font-size:12px;line-height:1.6;margin:25px 0;display:block;overflow-x:auto}th,td{border:1px solid #ded8e5;padding:12px 14px;text-align:left;vertical-align:top}th{background:#ece5f3;color:#463452}tbody tr:nth-child(even){background:#faf8fc}figure{margin:25px 0}figure svg{max-width:100%;height:auto}figcaption{font-size:11px;color:#918398}footer{padding:30px;text-align:center;color:#a298ac;font-size:12px}@media(max-width:900px){.layout{grid-template-columns:1fr}aside{position:static;height:auto;border-bottom:1px solid #dfd7e7;padding-bottom:15px}aside ul{columns:2}main{padding:30px 23px}}@media(max-width:540px){aside ul{columns:1}h1{font-size:29px}header{padding:25px}header button{float:none;margin-bottom:15px}.layout{padding:20px 12px}main{padding:26px 18px}table{font-size:11px}}@media print{@page{size:letter;margin:18mm}body{background:white;font-size:10pt;line-height:1.5}header,aside,footer{display:none}.layout{display:block;padding:0}main{border:0;padding:0}h1{font-size:24pt}h2{font-size:16pt;margin-top:24pt;break-after:avoid}p,li{orphans:3;widows:3}pre{background:#f5f2f8;color:black;white-space:pre-wrap;overflow-wrap:anywhere;break-inside:avoid}table{display:table;font-size:8.5pt}thead{display:table-header-group}tr,figure{break-inside:avoid}a{color:black}}
+</style></head><body><header><button onclick="window.print()">Imprimir o guardar PDF</button><b>sporthub.</b><p>Guía de instalación y presentación · Web + Android + API</p></header><div class="layout"><aside><strong>CONTENIDO</strong><div class="toc">
+<ul>
+<li><a href="#1-que-contiene-el-proyecto">1 Qué contiene el proyecto</a></li>
+<li><a href="#2-herramientas-que-debes-instalar">2 Herramientas que debes instalar</a></li>
+<li><a href="#3-extraer-y-abrir-el-proyecto">3 Extraer y abrir el proyecto</a></li>
+<li><a href="#4-encender-el-backend-primero">4 Encender el backend primero</a></li>
+<li><a href="#5-encender-la-web-react">5 Encender la web React</a></li>
+<li><a href="#6-preparar-la-conexion-con-tu-celular-android">6 Preparar la conexión con tu celular Android</a></li>
+<li><a href="#7-encender-y-abrir-la-app-movil">7 Encender y abrir la app móvil</a></li>
+<li><a href="#8-uso-diario-y-cierre">8 Uso diario y cierre</a></li>
+<li><a href="#9-las-cuatro-tablas-y-sus-relaciones">9 Las cuatro tablas y sus relaciones</a></li>
+<li><a href="#10-entender-el-flujo-de-la-aplicacion">10 Entender el flujo de la aplicación</a></li>
+<li><a href="#11-demostrar-los-endpoints-en-swagger">11 Demostrar los endpoints en Swagger</a></li>
+<li><a href="#12-que-mostrar-al-docente">12 Qué mostrar al docente</a></li>
+<li><a href="#13-git-y-github-con-el-equipo">13 Git y GitHub con el equipo</a></li>
+<li><a href="#14-errores-comunes">14 Errores comunes</a></li>
+<li><a href="#15-comprobar-la-compilacion-y-las-pruebas">15 Comprobar la compilación y las pruebas</a></li>
+<li><a href="#16-si-posteriormente-necesitas-un-apk">16 Si posteriormente necesitas un APK</a></li>
+<li><a href="#17-fuentes-oficiales-consultadas">17 Fuentes oficiales consultadas</a></li>
+</ul>
+</div>
+</aside><main><h1 id="guia-de-instalacion-y-presentacion-de-sporthub">Guía de instalación y presentación de SportHub</h1>
+<p>Proyecto final de la Unidad 3 · ASP.NET Core Web API, React y React Native · 22 de octubre de 2026</p>
+<p>Esta guía explica cómo abrir el código, instalar las herramientas, ejecutar la API, abrir la web y usar la app en Android. El sistema es una tienda deportiva con productos, inventario y ventas. Los dos clientes guardan sus datos en la misma API.</p>
+<p><strong>Alcance corregido:</strong> el documento entregado pide entre 6 y 10 tablas. Por indicación posterior de Sebastian, esta implementación usa exactamente <strong>4 tablas de negocio</strong>. Esa diferencia debe estar aceptada por el docente para que el número de tablas cumpla la evaluación. El trabajo colaborativo y la defensa se completan con las aportaciones reales del equipo.</p>
+<h2 id="1-que-contiene-el-proyecto">1 Qué contiene el proyecto</h2>
+<table>
+<thead>
+<tr>
+<th>Carpeta o archivo</th>
+<th>Qué contiene</th>
+<th>Con qué se abre</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>backend/SportHub.sln</td>
+<td>Solución de C# con la API</td>
+<td>Visual Studio compatible con .NET 10</td>
+</tr>
+<tr>
+<td>backend/SportHub.Api</td>
+<td>Controladores, JWT, modelos y Entity Framework Core</td>
+<td>Visual Studio o VS Code</td>
+</tr>
+<tr>
+<td>backend/database/schema.sql</td>
+<td>Script de creación de las 4 tablas en SQLite</td>
+<td>Editor de texto o DB Browser for SQLite</td>
+</tr>
+<tr>
+<td>web</td>
+<td>Cliente React con Vite</td>
+<td>VS Code y navegador</td>
+</tr>
+<tr>
+<td>mobile</td>
+<td>App Android con React Native y Expo SDK 57</td>
+<td>VS Code y Expo Go compatible</td>
+</tr>
+<tr>
+<td>scripts</td>
+<td>Accesos de arranque para Windows</td>
+<td>Doble clic en los archivos .cmd</td>
+</tr>
+<tr>
+<td>tests</td>
+<td>Pruebas reales contra la API</td>
+<td>Python 3 opcional</td>
+</tr>
+<tr>
+<td>docs</td>
+<td>Guía, arquitectura y plan para GitHub</td>
+<td>Navegador o VS Code</td>
+</tr>
+</tbody>
+</table>
+<p><strong>Visual Studio y Visual Studio Code son programas distintos.</strong> Visual Studio se usa habitualmente para C#. VS Code es un editor que sirve tanto para React web como para React Native. VS Code Insiders es una edición de prueba del mismo editor: es opcional y puede sustituir a VS Code estable. No hay una obligación de usar Insiders para el móvil.</p>
+<p>La ruta más sencilla para este proyecto es Visual Studio para backend y una ventana de VS Code para web y móvil. También puedes ejecutar las tres partes desde VS Code y tres terminales.</p>
+<h2 id="2-herramientas-que-debes-instalar">2 Herramientas que debes instalar</h2>
+<p>Haz estas instalaciones una sola vez en cada computadora de desarrollo. El celular no necesita Node ni .NET.</p>
+<ol>
+<li><strong>Node.js 24 LTS para Windows x64.</strong> Descárgalo desde <a href="https://nodejs.org/en/download">https://nodejs.org/en/download</a>. Si se muestra otra versión principal, elige la rama 24 LTS en los archivos de versiones. Ejecuta el instalador con las opciones predeterminadas y conserva la opción de añadir al PATH. Node incluye npm y npx. Este proyecto se verificó con Node 24.</li>
+<li><strong>SDK de .NET 10 para Windows x64.</strong> Descarga el SDK desde <a href="https://dotnet.microsoft.com/en-us/download/dotnet/10.0">https://dotnet.microsoft.com/en-us/download/dotnet/10.0</a>. El SDK permite compilar; instalar únicamente el Runtime no es suficiente.</li>
+<li><strong>VS Code estable</strong>, desde <a href="https://code.visualstudio.com/">https://code.visualstudio.com/</a>. Para React no es necesaria una extensión especial. Si usarás también C# en VS Code, instala C# Dev Kit desde Extensiones.</li>
+<li><strong>Visual Studio Community compatible con .NET 10</strong>, opcional si usarás los comandos de esta guía. La página de .NET 10 indica soporte de Visual Studio 2026. En Visual Studio Installer selecciona la carga de trabajo Desarrollo de ASP.NET y web. Si tienes Visual Studio 2022 y no reconoce net10.0, ejecuta la API desde terminal con el SDK 10 o actualiza el IDE.</li>
+<li><strong>Git para Windows</strong>, desde <a href="https://git-scm.com/downloads/win">https://git-scm.com/downloads/win</a>. Mantén las opciones recomendadas y la integración con la línea de comandos.</li>
+<li><strong>Expo Go para Android compatible con SDK 57.</strong> Instálalo desde Play Store si su versión acepta SDK 57. Si aparece incompatibilidad, usa <a href="https://expo.dev/go">https://expo.dev/go</a> y selecciona SDK 57 para Android. El proyecto está fijado a SDK 57, así que no necesita coincidir con la versión más reciente de Expo.</li>
+<li><strong>Python 3</strong>, opcional, para ejecutar las pruebas de integración incluidas. No se necesita para usar la tienda.</li>
+</ol>
+<p>No necesitas SQL Server, MySQL, XAMPP ni crear una base de datos remota. SQLite se instala como dependencia de la API y guarda los datos en un archivo local. Tampoco necesitas Android Studio para probar en un celular real con Expo Go.</p>
+<p>Después de instalar, cierra las terminales antiguas y abre una nueva. Presiona Windows, escribe <strong>cmd</strong> y abre Símbolo del sistema. Ejecuta cada comando por separado:</p>
+<pre><code class="language-bat">node --version
+npm --version
+dotnet --list-sdks
+git --version
+</code></pre>
+<p>Debes ver una versión 24 de Node, una versión de npm, una línea de SDK que comience con 10 y una versión de Git. Si un comando no se reconoce, revisa su instalación y abre otra terminal. También puedes ejecutar scripts/00_VERIFICAR.cmd.</p>
+<h2 id="3-extraer-y-abrir-el-proyecto">3 Extraer y abrir el proyecto</h2>
+<ol>
+<li>Descarga el ZIP y usa clic derecho, Extraer todo. No ejecutes archivos dentro de la vista comprimida del ZIP.</li>
+<li>Puedes dejar la carpeta en C:\Proyectos\SportHub. Todos los comandos siguientes asumen esa ubicación. Si usas otra ruta, sustitúyela.</li>
+<li>La carpeta correcta contiene backend, web, mobile, docs y scripts. Si la extracción crea una carpeta adicional, entra hasta encontrar esas carpetas.</li>
+<li>En VS Code selecciona Archivo, Abrir carpeta y abre C:\Proyectos\SportHub.</li>
+<li>En Terminal, Nueva terminal, abre tres terminales: una para API, otra para web y otra para móvil. Puedes usar terminales de Símbolo del sistema para evitar restricciones de scripts de PowerShell.</li>
+</ol>
+<p>En PowerShell, si aparece que npm.ps1 no se puede cargar, usa <strong>npm.cmd</strong> en lugar de npm y <strong>npx.cmd</strong> en lugar de npx, o cambia la terminal a Símbolo del sistema. No hace falta desactivar la seguridad de scripts del equipo.</p>
+<h2 id="4-encender-el-backend-primero">4 Encender el backend primero</h2>
+<p>En la primera terminal ejecuta:</p>
+<pre><code class="language-bat">cd /d C:\Proyectos\SportHub\backend\SportHub.Api
+dotnet restore
+dotnet run
+</code></pre>
+<p>La primera restauración descarga los paquetes NuGet y necesita Internet. Espera el mensaje de que la aplicación está escuchando en el puerto 5080. Deja esta terminal abierta.</p>
+<p>Abre estas direcciones en tu navegador:</p>
+<ul>
+<li>Estado del servidor: <a href="http://localhost:5080/health">http://localhost:5080/health</a></li>
+<li>Documentación y pruebas de la API: <a href="http://localhost:5080/swagger">http://localhost:5080/swagger</a></li>
+</ul>
+<p>El estado debe mostrar status con valor ok. En la primera ejecución se crea automáticamente backend/SportHub.Api/.local/sporthub.db, una clave JWT local aleatoria y 12 productos de demostración. No debes ejecutar el script SQL antes de iniciar la aplicación.</p>
+<p><strong>Alternativa con Visual Studio:</strong> abre backend/SportHub.sln, espera la restauración de paquetes, elige SportHub.Api como proyecto de inicio y selecciona el perfil SportHub.Api, sin IIS Express. Presiona Ctrl+F5. Usa solo una instancia de la API: si ya la abriste en terminal, detén esa instancia antes de iniciarla desde el IDE.</p>
+<p><strong>Alternativa con doble clic:</strong> scripts/01_API.cmd ejecuta la restauración y el servidor en la carpeta correcta.</p>
+<h2 id="5-encender-la-web-react">5 Encender la web React</h2>
+<p>En la segunda terminal ejecuta:</p>
+<pre><code class="language-bat">cd /d C:\Proyectos\SportHub\web
+npm ci
+npm run dev
+</code></pre>
+<p>npm ci instala exactamente las versiones del archivo package-lock.json. Puede tardar la primera vez. Al terminar debe aparecer la dirección <a href="http://localhost:5173">http://localhost:5173</a>. Ábrela en Chrome o Edge y deja la terminal funcionando.</p>
+<p>La web utiliza <a href="http://localhost:5080/api">http://localhost:5080/api</a> de forma predeterminada. No necesitas editar la dirección para usarla desde la misma computadora. Para cambiarla, copia web/.env.example como web/.env, modifica VITE_API_URL y reinicia npm run dev.</p>
+<p><strong>Acceso Admin</strong></p>
+<ul>
+<li>Correo: admin@sporthub.com</li>
+<li>Contraseña: SportHub2026!</li>
+</ul>
+<p><strong>Acceso Vendedor</strong></p>
+<ul>
+<li>Correo: vendedor@sporthub.com</li>
+<li>Contraseña: SportHub2026!</li>
+</ul>
+<p>Estas cuentas se crean para la demostración en Development. También puedes registrar una cuenta nueva, que siempre tendrá el rol Vendedor. Admin administra productos. Cada cuenta gestiona sus propias ventas. Admin tampoco puede leer las ventas ajenas.</p>
+<p><strong>Qué probar en la web</strong></p>
+<ol>
+<li>Entra con Admin. Verás el resumen, inventario y totales de ventas de esa cuenta.</li>
+<li>Abre Productos. Busca por nombre o filtra por categoría.</li>
+<li>Presiona Nuevo producto. Completa nombre, precio, stock, categoría, marca y color. Guarda.</li>
+<li>Edita ese producto y comprueba que cambia su información.</li>
+<li>Abre Mis ventas y presiona Nueva venta. Escribe el nombre del cliente.</li>
+<li>Agrega uno o varios productos y cantidades. No puedes repetir el mismo producto en dos líneas.</li>
+<li>Guarda. La API calcula los precios y descuenta stock.</li>
+<li>Abre Ver / editar para consultar y modificar la venta. Se conserva el precio histórico de los productos que ya estaban en ella.</li>
+<li>Elimina una venta de prueba. Las unidades vuelven al inventario.</li>
+<li>Elimina el producto de prueba después de eliminar sus ventas. Un producto con ventas existentes no se puede borrar.</li>
+</ol>
+<p>Los cambios entre web y móvil se consultan pulsando Actualizar o deslizando la pantalla móvil hacia abajo. La implementación no usa actualizaciones en tiempo real.</p>
+<h2 id="6-preparar-la-conexion-con-tu-celular-android">6 Preparar la conexión con tu celular Android</h2>
+<p>El celular y la computadora deben estar conectados a la misma red local. La computadora puede estar por cable y el celular por WiFi si el router permite la comunicación entre ambos.</p>
+<p>En una terminal de la computadora ejecuta:</p>
+<pre><code class="language-bat">ipconfig
+</code></pre>
+<p>Busca Dirección IPv4 en el adaptador que realmente usas. Ejemplo: 192.168.1.34. No copies una dirección de Bluetooth ni de un adaptador virtual.</p>
+<p>Desde el navegador del celular abre, sustituyendo la IP:</p>
+<pre><code class="language-text">http://192.168.1.34:5080/health
+</code></pre>
+<p>Debes ver status ok. Esta prueba confirma la conexión con la API antes de abrir Expo. La API está configurada para escuchar en 0.0.0.0:5080; esa es una dirección de escucha, no una dirección para escribir en el navegador.</p>
+<p>Si Windows pide permiso de red para dotnet o Node, permite el acceso en la red privada que estás usando. Si el celular no llega al servidor, en Firewall de Windows Defender con seguridad avanzada crea una regla de entrada TCP para el puerto 5080, limitada al perfil Privado y a la subred local. Si Expo no conecta, revisa también el puerto 8081 para el servidor de desarrollo. No desactives todo el firewall.</p>
+<p>Si la red de la universidad separa los dispositivos, usa una red local que permita comunicación entre ellos. Un túnel de Expo solo transporta el código de la app; no convierte automáticamente tu API local en una API pública.</p>
+<h2 id="7-encender-y-abrir-la-app-movil">7 Encender y abrir la app móvil</h2>
+<p>En la tercera terminal ejecuta:</p>
+<pre><code class="language-bat">cd /d C:\Proyectos\SportHub\mobile
+npm ci
+npx expo start --lan
+</code></pre>
+<p>Aparecerá un código QR. Abre Expo Go compatible con SDK 57 y escanéalo. Mantén funcionando las terminales de la API y de Expo.</p>
+<ol>
+<li>En la app, toca <strong>Dirección de la API</strong> en la pantalla de inicio de sesión.</li>
+<li>Reemplaza la dirección por la IPv4 de tu computadora. Ejemplo: <a href="http://192.168.1.34:5080/api">http://192.168.1.34:5080/api</a>.</li>
+<li>Incluye /api al final. La dirección de comprobación /health no se usa para el login.</li>
+<li>Inicia sesión con admin@sporthub.com y SportHub2026!.</li>
+<li>La app guarda la dirección y la sesión usando SecureStore. Para cambiar de servidor, sal de tu sesión y modifica la dirección antes de volver a entrar.</li>
+<li>Verás Resumen, Productos y Ventas. Puedes buscar productos, crear y editar productos con Admin y registrar, editar o eliminar tus ventas.</li>
+<li>Crea una venta desde Android. Regresa a la web, entra con la misma cuenta y presiona Actualizar. La venta aparecerá en ambas aplicaciones.</li>
+</ol>
+<p>También puedes copiar mobile/.env.example como mobile/.env y cambiar EXPO_PUBLIC_API_URL antes de arrancar Expo. La dirección que guardes dentro de la app prevalece sobre el valor predeterminado. Nunca pongas claves JWT o contraseñas dentro de variables EXPO_PUBLIC: su contenido forma parte del cliente.</p>
+<p><strong>Android Studio opcional:</strong> si ya tienes un emulador Android configurado, utiliza <a href="http://10.0.2.2:5080/api">http://10.0.2.2:5080/api</a> como dirección de la API. Con el emulador encendido, presiona a en la consola de Expo. En un celular real, localhost apunta al propio celular y 10.0.2.2 no es la dirección de tu computadora.</p>
+<table>
+<thead>
+<tr>
+<th>Dónde se ejecuta el cliente</th>
+<th>Dirección habitual de la API</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Web en la computadora de la API</td>
+<td><a href="http://localhost:5080/api">http://localhost:5080/api</a></td>
+</tr>
+<tr>
+<td>Emulador Android Studio</td>
+<td><a href="http://10.0.2.2:5080/api">http://10.0.2.2:5080/api</a></td>
+</tr>
+<tr>
+<td>Celular Android real</td>
+<td><a href="http://IPV4_DE_LA_PC:5080/api">http://IPV4_DE_LA_PC:5080/api</a></td>
+</tr>
+</tbody>
+</table>
+<h2 id="8-uso-diario-y-cierre">8 Uso diario y cierre</h2>
+<p>Después de la primera instalación, normalmente solo necesitas encender la API, la web y Expo con dotnet run, npm run dev y npx expo start --lan en sus carpetas respectivas. No necesitas repetir npm ci cada día.</p>
+<p>Puedes usar scripts/01_API.cmd, scripts/02_WEB.cmd y scripts/03_MOVIL.cmd. Los scripts instalan dependencias si no encuentran node_modules y mantienen visibles los mensajes de error.</p>
+<p>Para cerrar un servidor, selecciona su terminal y presiona Ctrl+C. Detener el servidor no borra las ventas. Si vuelves a iniciarlo desde la misma carpeta, se abre el mismo archivo SQLite.</p>
+<h2 id="9-las-cuatro-tablas-y-sus-relaciones">9 Las cuatro tablas y sus relaciones</h2>
+<table>
+<thead>
+<tr>
+<th>Tabla</th>
+<th>Datos principales</th>
+<th>Relación</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Users</td>
+<td>Id, Name, Email, PasswordHash, Role</td>
+<td>Un usuario tiene muchas ventas</td>
+</tr>
+<tr>
+<td>Products</td>
+<td>Id, Name, Description, Price, Stock, Category, Brand, Color</td>
+<td>Un producto aparece en muchos detalles</td>
+</tr>
+<tr>
+<td>Sales</td>
+<td>Id, CreatedAt, UserId, CustomerName, Notes</td>
+<td>Una venta tiene muchos detalles</td>
+</tr>
+<tr>
+<td>SaleItems</td>
+<td>Id, SaleId, ProductId, Quantity, UnitPrice</td>
+<td>Une ventas con productos</td>
+</tr>
+</tbody>
+</table>
+<p>La relación 1:N aparece entre Users y Sales, entre Sales y SaleItems y entre Products y SaleItems. La relación N:M entre Sales y Products se resuelve con SaleItems. El par SaleId y ProductId es único, por lo que una venta no puede repetir el mismo producto en diferentes líneas.</p>
+<p>Para conservar exactamente cuatro tablas, categoría y marca son textos dentro de Products. El nombre del cliente se guarda en Sales. No existen tablas adicionales de clientes, marcas o categorías, ni tablas de Identity. El hash de contraseña se almacena en Users. SQLite puede crear sqlite_sequence como metadato interno de autoincremento; no es una entidad del dominio.</p>
+<p>El diagrama completo está en docs/MODELO_DATOS.svg. El script backend/database/schema.sql reproduce la estructura generada por Entity Framework Core. La API usa EnsureCreated para crear una base nueva. Este proyecto entrega script SQL, que es una de las alternativas del enunciado; no usa migraciones incrementales. Cambiar los modelos posteriormente requiere planificar una migración o regenerar una base de prueba.</p>
+<figure><svg xmlns="http://www.w3.org/2000/svg" width="1000" height="600" viewBox="0 0 1000 600" role="img" aria-label="Modelo de las cuatro tablas de SportHub"><defs><style>text{font-family:Segoe UI,Arial,sans-serif;fill:#272334}.title{font-size:24px;font-weight:700}.head{font-size:18px;font-weight:700}.field{font-size:14px}.note{font-size:12px;fill:#71677d}.rel{font-size:13px;font-weight:700;fill:#795cb0}</style><marker id="arrow" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="6" markerHeight="6" orient="auto"><path d="M0 0L10 5L0 10z" fill="#9071bb"/></marker></defs><rect width="1000" height="600" fill="#faf9fc"/><text x="40" y="44" class="title">SportHub   Modelo de cuatro tablas</text><text x="40" y="72" class="note">1:N entre tablas conectadas · N:M entre Sales y Products mediante SaleItems</text><rect x="40" y="120" width="240" height="182" rx="10" fill="white" stroke="#d9d2e4"/><path d="M50 120h220q10 0 10 10v35H40v-35q0-10 10-10" fill="#e9e0f6"/><text x="58" y="149" class="head">Users</text><text x="58" y="190" class="field">PK  Id</text><text x="58" y="215" class="field">Name</text><text x="58" y="240" class="field">UK  Email</text><text x="58" y="265" class="field">PasswordHash</text><text x="58" y="290" class="field">Role</text><rect x="380" y="120" width="240" height="182" rx="10" fill="white" stroke="#d9d2e4"/><path d="M390 120h220q10 0 10 10v35H380v-35q0-10 10-10" fill="#e9e0f6"/><text x="398" y="149" class="head">Sales</text><text x="398" y="190" class="field">PK  Id</text><text x="398" y="215" class="field">FK  UserId → Users</text><text x="398" y="240" class="field">CreatedAt</text><text x="398" y="265" class="field">CustomerName</text><text x="398" y="290" class="field">Notes</text><rect x="720" y="120" width="240" height="182" rx="10" fill="white" stroke="#d9d2e4"/><path d="M730 120h220q10 0 10 10v35H720v-35q0-10 10-10" fill="#e9e0f6"/><text x="738" y="149" class="head">SaleItems</text><text x="738" y="190" class="field">PK  Id</text><text x="738" y="215" class="field">FK  SaleId → Sales</text><text x="738" y="240" class="field">FK  ProductId → Products</text><text x="738" y="265" class="field">Quantity</text><text x="738" y="290" class="field">UnitPrice</text><rect x="380" y="355" width="240" height="157" rx="10" fill="white" stroke="#d9d2e4"/><path d="M390 355h220q10 0 10 10v35H380v-35q0-10 10-10" fill="#e9e0f6"/><text x="398" y="384" class="head">Products</text><text x="398" y="425" class="field">PK  Id</text><text x="398" y="450" class="field">Name · Description</text><text x="398" y="475" class="field">Price · Stock</text><text x="398" y="500" class="field">Category · Brand · Color</text><path d="M280 220H380" fill="none" stroke="#9071bb" stroke-width="2" marker-end="url(#arrow)"/><text x="311" y="207" class="rel">1 : N</text><path d="M620 220H720" fill="none" stroke="#9071bb" stroke-width="2" marker-end="url(#arrow)"/><text x="651" y="207" class="rel">1 : N</text><path d="M620 450H840V302" fill="none" stroke="#9071bb" stroke-width="2" marker-end="url(#arrow)"/><text x="733" y="439" class="rel">1 : N</text><text x="40" y="560" class="note">Índice único SaleItems(SaleId, ProductId) · Precios históricos en UnitPrice · Stock validado por la API</text><text x="40" y="582" class="note">Categoría y marca son atributos de Products. El cliente se identifica por su nombre en Sales.</text></svg><figcaption>Modelo de datos con exactamente cuatro tablas de negocio.</figcaption></figure><h2 id="10-entender-el-flujo-de-la-aplicacion">10 Entender el flujo de la aplicación</h2>
+<p>Cuando haces login, React o React Native envía un POST a /api/auth/login. La API comprueba el hash de contraseña y devuelve un JWT con usuario, rol y vencimiento. En las siguientes llamadas, el cliente envía Authorization: Bearer seguido del token.</p>
+<p>El middleware de ASP.NET Core valida firma, emisor, destinatario y vencimiento antes de ejecutar los controladores protegidos. Una llamada sin token devuelve 401. Un vendedor que intenta modificar productos recibe 403. El registro nunca toma un rol enviado por el cliente.</p>
+<p>Los controladores consultan AppDbContext. Entity Framework Core convierte las operaciones a SQL y SQLite guarda los cambios. Ambos clientes usan las mismas rutas: el móvil no accede directamente al archivo de base de datos.</p>
+<p>Las ventas se guardan dentro de una transacción. Si falla una línea, la operación completa se revierte. Al editar una venta se recupera el stock anterior y se descuenta el nuevo. Al eliminarla se devuelve el stock. Los precios los obtiene la API y no se aceptan como un total enviado por el cliente.</p>
+<p>Los tokens vencen en una hora. En la web la sesión se conserva en memoria y se pierde al recargar toda la página. En Android se guarda en SecureStore y se valida al reabrir. Salir elimina la sesión del dispositivo; no existe una lista de revocación de JWT en el servidor.</p>
+<h2 id="11-demostrar-los-endpoints-en-swagger">11 Demostrar los endpoints en Swagger</h2>
+<p>Abre <a href="http://localhost:5080/swagger">http://localhost:5080/swagger</a>. Despliega POST /api/auth/login, pulsa Try it out y envía:</p>
+<pre><code class="language-json">{
+  &quot;email&quot;: &quot;admin@sporthub.com&quot;,
+  &quot;password&quot;: &quot;SportHub2026!&quot;
+}
+</code></pre>
+<p>Copia el valor token de la respuesta, sin las comillas. Pulsa Authorize, pega solo el token y confirma. Swagger añade el prefijo Bearer. Luego prueba GET /api/products.</p>
+<table>
+<thead>
+<tr>
+<th>Método</th>
+<th>Ruta</th>
+<th>Función</th>
+<th>Permiso</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>POST</td>
+<td>/api/auth/register</td>
+<td>Registrar vendedor</td>
+<td>Público con límite de intentos</td>
+</tr>
+<tr>
+<td>POST</td>
+<td>/api/auth/login</td>
+<td>Obtener JWT</td>
+<td>Público con límite de intentos</td>
+</tr>
+<tr>
+<td>GET</td>
+<td>/api/auth/me</td>
+<td>Ver cuenta actual</td>
+<td>Autenticado</td>
+</tr>
+<tr>
+<td>GET</td>
+<td>/api/products</td>
+<td>Listar y filtrar</td>
+<td>Autenticado</td>
+</tr>
+<tr>
+<td>GET</td>
+<td>/api/products/{id}</td>
+<td>Consultar producto</td>
+<td>Autenticado</td>
+</tr>
+<tr>
+<td>POST</td>
+<td>/api/products</td>
+<td>Crear producto</td>
+<td>Admin</td>
+</tr>
+<tr>
+<td>PUT</td>
+<td>/api/products/{id}</td>
+<td>Editar producto</td>
+<td>Admin</td>
+</tr>
+<tr>
+<td>DELETE</td>
+<td>/api/products/{id}</td>
+<td>Eliminar sin ventas</td>
+<td>Admin</td>
+</tr>
+<tr>
+<td>GET</td>
+<td>/api/sales</td>
+<td>Listar mis ventas</td>
+<td>Autenticado</td>
+</tr>
+<tr>
+<td>GET</td>
+<td>/api/sales/{id}</td>
+<td>Consultar mi venta</td>
+<td>Propietario</td>
+</tr>
+<tr>
+<td>POST</td>
+<td>/api/sales</td>
+<td>Crear venta</td>
+<td>Autenticado</td>
+</tr>
+<tr>
+<td>PUT</td>
+<td>/api/sales/{id}</td>
+<td>Editar mi venta</td>
+<td>Propietario</td>
+</tr>
+<tr>
+<td>DELETE</td>
+<td>/api/sales/{id}</td>
+<td>Eliminar y reponer stock</td>
+<td>Propietario</td>
+</tr>
+</tbody>
+</table>
+<p>Prueba una venta con un ID de producto real de la lista:</p>
+<pre><code class="language-json">{
+  &quot;customerName&quot;: &quot;Cliente de demostración&quot;,
+  &quot;notes&quot;: &quot;Prueba desde Swagger&quot;,
+  &quot;items&quot;: [
+    { &quot;productId&quot;: 1, &quot;quantity&quot;: 2 }
+  ]
+}
+</code></pre>
+<p>Para mostrar seguridad, usa una ventana privada sin token: GET /api/products devuelve 401. Para mostrar validaciones, intenta una venta con más unidades que el stock. Debe devolver 409 y conservar el stock anterior. Para mostrar roles, inicia sesión como vendedor e intenta POST /api/products: devuelve 403.</p>
+<h2 id="12-que-mostrar-al-docente">12 Qué mostrar al docente</h2>
+<ol>
+<li>Explica la arquitectura cliente servidor y muestra las carpetas de los tres proyectos.</li>
+<li>Muestra MODELO_DATOS.svg y el script SQL. Aclara que son cuatro tablas por la corrección indicada.</li>
+<li>Abre Swagger y demuestra login, JWT y una consulta protegida.</li>
+<li>En la web crea un producto de prueba con Admin. Edita su precio o descripción.</li>
+<li>En Android entra con la misma cuenta y actualiza para ver el producto.</li>
+<li>Registra una venta desde el celular y actualiza la web para verla.</li>
+<li>Compara el stock antes y después. Edita la cantidad y demuestra que vuelve a calcularse.</li>
+<li>Provoca una venta inválida sin stock suficiente. Explica el rollback.</li>
+<li>Elimina una venta de prueba y comprueba la devolución del stock.</li>
+<li>Inicia sesión como Vendedor y muestra las restricciones del catálogo.</li>
+<li>Muestra los repositorios, ramas, pull requests y commits que realmente hizo cada integrante.</li>
+</ol>
+<p>Capturas sugeridas para su informe: diagrama, Swagger con token, respuesta 401 sin token, producto creado en web, producto visible en Android, venta creada en Android y consultada en web, validación por falta de stock e historial real de GitHub. Las capturas y los enlaces se obtienen al ejecutar el proyecto y trabajar en los repositorios del equipo.</p>
+<h2 id="13-git-y-github-con-el-equipo">13 Git y GitHub con el equipo</h2>
+<p>Lee docs/TRABAJO_EN_EQUIPO.md. Todavía no se creó ningún repositorio ni se subió nada a GitHub: faltan las cuentas y la ubicación de los repositorios. El ZIP contiene una base de código completa, sin historial de autores inventados.</p>
+<p>Para seguir literalmente la redacción de entregables puedes crear tres repositorios compartidos, uno para backend, otro para web y otro para móvil. Cada compañero debe ser colaborador en los repositorios donde trabajará. El plan incluido explica cómo hacer aportes revisados en ramas y unirlos con pull requests. Si el docente permite un solo repositorio con tres carpetas, también puede usarse esa organización.</p>
+<p>Una subida inicial del código base no prueba por sí sola trabajo colaborativo. Los integrantes deben revisar, ejecutar y aportar cambios reales; después se registran esos cambios con sus propias cuentas. No cambien autores, fechas ni atribuyan a alguien código que no escribió.</p>
+<h2 id="14-errores-comunes">14 Errores comunes</h2>
+<table>
+<thead>
+<tr>
+<th>Mensaje o síntoma</th>
+<th>Cómo resolverlo</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>node o npm no se reconoce</td>
+<td>Instala Node 24 LTS, conserva PATH y abre otra terminal</td>
+</tr>
+<tr>
+<td>No se encuentra el SDK o NETSDK1045</td>
+<td>Instala SDK .NET 10 y comprueba dotnet --list-sdks</td>
+</tr>
+<tr>
+<td>Visual Studio no abre net10.0</td>
+<td>Usa un IDE compatible con .NET 10 o ejecuta dotnet run desde terminal</td>
+</tr>
+<tr>
+<td>npm.ps1 bloqueado</td>
+<td>Usa npm.cmd y npx.cmd o una terminal cmd</td>
+</tr>
+<tr>
+<td>npm ci falla por diferencias de lock</td>
+<td>Usa los package.json y package-lock.json del mismo ZIP; no mezcles versiones</td>
+</tr>
+<tr>
+<td>Error de restauración o certificados</td>
+<td>Revisa conexión, fecha del sistema y proxy; no desactives la validación de TLS</td>
+</tr>
+<tr>
+<td>Puerto 5080 o 5173 ocupado</td>
+<td>Detén la otra instancia con Ctrl+C antes de arrancar una nueva</td>
+</tr>
+<tr>
+<td>La web no conecta a la API</td>
+<td>Abre localhost:5080/health; verifica que la terminal de API siga encendida</td>
+</tr>
+<tr>
+<td>Error CORS al abrir web por una IP</td>
+<td>La configuración permite localhost:5173 y 127.0.0.1:5173; añade el origen exacto a AllowedOrigins y reinicia la API</td>
+</tr>
+<tr>
+<td>Android muestra Network request failed</td>
+<td>Comprueba IP, WiFi, /health desde el celular y regla privada del firewall</td>
+</tr>
+<tr>
+<td>Expo dice SDK incompatible</td>
+<td>Instala Expo Go para SDK 57 desde expo.dev/go o usa una compilación de desarrollo compatible</td>
+</tr>
+<tr>
+<td>Cambié una variable y no se aplica</td>
+<td>Reinicia Vite o Expo; para Expo puedes usar npx expo start -c</td>
+</tr>
+<tr>
+<td>Expo carga pero no hace login</td>
+<td>El servidor de Expo y la API son distintos; revisa la dirección de la API en la app</td>
+</tr>
+<tr>
+<td>401 después de un tiempo</td>
+<td>El token venció; inicia sesión nuevamente</td>
+</tr>
+<tr>
+<td>403 al editar productos</td>
+<td>La cuenta tiene rol Vendedor; prueba con Admin</td>
+</tr>
+<tr>
+<td>409 al eliminar un producto</td>
+<td>Tiene ventas existentes; elimina sus ventas de prueba o conserva el producto</td>
+</tr>
+<tr>
+<td>No aparecen mis ventas</td>
+<td>Usa la misma cuenta en ambos clientes y pulsa Actualizar</td>
+</tr>
+<tr>
+<td>429 al entrar o registrarse</td>
+<td>Espera un minuto; el límite agrupa intentos por IP</td>
+</tr>
+</tbody>
+</table>
+<p>No borres .local para arreglar un error de interfaz. Esa carpeta contiene la base de datos. Si necesitas reiniciar una demostración desde cero, detén la API, haz una copia de seguridad de .local y solo entonces elimina la carpeta de la base de prueba. Al iniciar se recrearán los datos iniciales. Esta operación elimina los registros anteriores y cambia la clave, por lo que los clientes deben iniciar sesión otra vez.</p>
+<h2 id="15-comprobar-la-compilacion-y-las-pruebas">15 Comprobar la compilación y las pruebas</h2>
+<p>Para compilar la API:</p>
+<pre><code class="language-bat">cd /d C:\Proyectos\SportHub\backend\SportHub.Api
+dotnet build
+</code></pre>
+<p>Para generar la versión web:</p>
+<pre><code class="language-bat">cd /d C:\Proyectos\SportHub\web
+npm ci
+npm run build
+</code></pre>
+<p>Para verificar que Expo empaqueta Android:</p>
+<pre><code class="language-bat">cd /d C:\Proyectos\SportHub\mobile
+npm ci
+npx expo install --check
+npx expo export --platform android
+</code></pre>
+<p>Exportar Android comprueba y genera el paquete JavaScript; ese comando no crea un APK instalable.</p>
+<p>Para probar la API automáticamente en una base temporal, instala Python 3 y ejecuta desde la carpeta raíz del proyecto:</p>
+<pre><code class="language-bat">cd /d C:\Proyectos\SportHub
+py tests\verify_local.py
+</code></pre>
+<p>El verificador compila y arranca una API temporal en 5089, genera su propia base, hace las pruebas y apaga esa instancia al finalizar. No modifica la base normal de la aplicación. Incluye comprobación de cuatro tablas, JWT, roles, CRUD, pertenencia de ventas, precios históricos y reversión del stock.</p>
+<p>El resumen de comprobaciones efectivamente realizadas se encuentra en docs/VALIDACION.md. La ejecución en el celular real y la evidencia de GitHub deben completarse en su equipo y su red.</p>
+<h2 id="16-si-posteriormente-necesitas-un-apk">16 Si posteriormente necesitas un APK</h2>
+<p>Para la demostración inicial basta Expo Go. Si el docente exige un APK independiente, hay un perfil preview en mobile/eas.json. Una compilación con EAS requiere tu cuenta de Expo y puede estar sujeta a los límites o colas del servicio.</p>
+<p>Desde mobile puedes ejecutar:</p>
+<pre><code class="language-bat">npx eas-cli@latest login
+npx eas-cli@latest build:configure
+npx eas-cli@latest build --platform android --profile preview
+</code></pre>
+<p>Cuando solicite crear o vincular el proyecto, usa el proyecto de tu cuenta. Después de compilar, descarga e instala el APK que te entregue EAS. No se incluye un APK ya compilado en esta entrega. Android tiene habilitado HTTP local para la demostración. Si publicas el sistema en Internet, utiliza HTTPS, una clave JWT configurada en el servidor y cuentas reales en vez de credenciales demo. La API y la base deben estar disponibles para que el APK pueda gestionar datos.</p>
+<h2 id="17-fuentes-oficiales-consultadas">17 Fuentes oficiales consultadas</h2>
+<ul>
+<li>SDK .NET 10 e IDE compatible: <a href="https://dotnet.microsoft.com/en-us/download/dotnet/10.0">https://dotnet.microsoft.com/en-us/download/dotnet/10.0</a></li>
+<li>Autenticación JWT: <a href="https://learn.microsoft.com/en-us/aspnet/core/security/authentication/configure-jwt-bearer-authentication?view=aspnetcore-10.0">https://learn.microsoft.com/en-us/aspnet/core/security/authentication/configure-jwt-bearer-authentication?view=aspnetcore-10.0</a></li>
+<li>Node.js: <a href="https://nodejs.org/en/download">https://nodejs.org/en/download</a></li>
+<li>Vite: <a href="https://vite.dev/guide/">https://vite.dev/guide/</a></li>
+<li>Inicio con Expo: <a href="https://docs.expo.dev/get-started/create-a-project/">https://docs.expo.dev/get-started/create-a-project/</a></li>
+<li>Expo Go por versión: <a href="https://expo.dev/go">https://expo.dev/go</a></li>
+<li>SecureStore: <a href="https://docs.expo.dev/versions/latest/sdk/securestore/">https://docs.expo.dev/versions/latest/sdk/securestore/</a></li>
+<li>GitHub Flow: <a href="https://docs.github.com/en/get-started/using-github/github-flow">https://docs.github.com/en/get-started/using-github/github-flow</a></li>
+</ul>
+<p>Las herramientas cambian con el tiempo. Conserva las versiones del proyecto y sus archivos de bloqueo; no actualices todas las dependencias antes de la presentación.</p></main></div><footer>SportHub · Guía para Windows y Android · Octubre de 2026</footer></body></html>
