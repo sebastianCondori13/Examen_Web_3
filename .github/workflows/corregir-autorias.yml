@@ -1,0 +1,19 @@
+name: Revisar corrección de autorías
+on:
+  push:
+    branches: [chore/corregir-autorias]
+    paths:
+      - .github/workflows/corregir-autorias.yml
+      - .github/scripts/repair_authorship.py
+permissions:
+  contents: read
+jobs:
+  preview:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+          persist-credentials: false
+      - name: Preparar corrección sin publicar
+        run: python .github/scripts/repair_authorship.py
