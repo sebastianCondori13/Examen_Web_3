@@ -19,7 +19,9 @@ La rama de integración es dev. Los cuatro módulos se publican por separado y s
 
 La primera importación se publica mediante la integración autenticada como sebastianCondori13. Esta integración asigna automáticamente autor y committer: sebastianCondori13, cqs0036301@est.univalle.edu. No permite establecer explícitamente el nombre Sebastián Condori. La cuenta autenticada, el autor y el committer se verifican por separado en GitHub.
 
-Para completar la entrega se utiliza la conexión disponible de sebastianCondori13 para todos los módulos. Los accesos por código de dispositivo de los compañeros no quedaron operativos en este entorno. No se afirma publicación desde sus cuentas ni se cambia su autoría para aparentarla. Adrián confirmó como datos de autoría AdrianSVJ y svj5002099@est.univalle.edu, pero estos no se utilizan para los commits automáticos de esta integración. Las ramas designan el reparto previsto de módulos; no constituyen por sí mismas evidencia de quién desarrolló originalmente cada archivo.
+La publicación inicial utilizó la conexión de sebastianCondori13. Posteriormente, con autorización explícita del propietario, se corrigieron los autores de las importaciones de web y móvil mediante GitHub Actions. El commit web registra AdrianSVJ <svj5002099@est.univalle.edu> y el móvil facundorojasgastanaga-dev <facundorojasgastanaga@gmail.com>. GitHub vincula ambos correos con las cuentas correspondientes. Se conserva a sebastianCondori13 como committer de esas importaciones: autoría y autenticación son datos distintos. La corrección no acredita un inicio de sesión personal de los compañeros ni reconstruye un desarrollo anterior.
+
+La corrección conserva todos los archivos, mensajes y fechas. Los siete commits afectados y sus descendientes recibieron nuevos SHA. El historial anterior permanece bajo seis etiquetas con prefijo respaldo-autorias-717645e3a606/. Cuatro firmas anteriores se retiraron de los objetos modificados porque ya no podían validar su contenido. El workflow de corrección volvió al modo de revisión, sin permiso de escritura, después de verificar el resultado.
 
 ## Conservación del proyecto
 

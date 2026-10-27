@@ -34,3 +34,13 @@ El ZIP no contiene node_modules, bin, obj, claves JWT, base con datos personales
 ## Repositorio y publicación
 
 Repositorio: https://github.com/sebastianCondori13/Examen_Web_3. Los cuatro bloques son API, web, móvil y pruebas/documentación. Se importan desde el ZIP revisado mediante ramas de trabajo y pull requests hacia `dev`, antes de la integración en `main`. La publicación se realiza con la cuenta conectada `sebastianCondori13`; los nombres de las ramas organizan los módulos del equipo. Consulta [PLAN_PUBLICACION.md](PLAN_PUBLICACION.md).
+
+## Autorías registradas
+
+| Módulo | Autor del commit de importación | Commit |
+| --- | --- | --- |
+| API y base de datos | [sebastianCondori13](https://github.com/sebastianCondori13) | [4c7d3a1](https://github.com/sebastianCondori13/Examen_Web_3/commit/4c7d3a1a8063d9dbb7856afd5c36a583d8634452) |
+| Web React | [AdrianSVJ](https://github.com/AdrianSVJ) | [8d5ba7f](https://github.com/sebastianCondori13/Examen_Web_3/commit/8d5ba7f539195060ecb6bbb8c67bb257a7d59022) |
+| React Native | [facundorojasgastanaga-dev](https://github.com/facundorojasgastanaga-dev) | [1548a9b](https://github.com/sebastianCondori13/Examen_Web_3/commit/1548a9bea139082dd1b1e6977c585ebf4dc3454e) |
+
+Los autores de web y móvil fueron corregidos con autorización del propietario. Se conservan los archivos, mensajes y fechas y se distingue esa autoría de la cuenta que publicó. El historial anterior quedó respaldado; el plan detalla la operación.
