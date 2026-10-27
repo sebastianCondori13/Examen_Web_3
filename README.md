@@ -1,36 +1,36 @@
 # SportHub
 
-Sistema universitario de tienda deportiva con ASP.NET Core Web API, React web y React Native Android. La base de datos tiene exactamente cuatro tablas: Users, Products, Sales y SaleItems.
+Tienda deportiva con ASP.NET Core Web API, React web y React Native Android con Expo. Incluye JWT, roles Admin/Vendedor, CRUD de productos y ventas, stock transaccional y SQLite con exactamente 4 tablas de negocio.
 
-## Estado de esta publicación
+Empieza abriendo **docs/GUIA_PASO_A_PASO.html** en tu navegador. También está disponible en Markdown. El enunciado original pide 6–10 tablas; esta versión aplica la corrección posterior del usuario a 4 tablas.
 
-La primera importación incorpora la API, el modelo de datos, el script SQL y la configuración básica del repositorio. Los clientes web y móvil, las pruebas y la documentación completa se incorporarán en los siguientes turnos desde sus ramas.
+## Arranque en Windows
 
-## Ejecutar la API
+Instala Node 24 LTS, SDK .NET 10 y Expo Go para SDK 57. Abre tres terminales en estas carpetas:
 
-Requisito: SDK .NET 10. Desde la raíz del repositorio:
-
-```sh
-cd backend/SportHub.Api
-dotnet restore
-dotnet run
-```
-
-Estado: http://localhost:5080/health
-
-Swagger: http://localhost:5080/swagger
-
-En Development se crean datos de demostración y una clave JWT aleatoria local. La base y la clave se guardan en `.local/`, excluida de Git. Las cuentas demo son `admin@sporthub.com` y `vendedor@sporthub.com`, con contraseña `SportHub2026!`.
-
-## Organización de la entrega
-
-| Bloque | Rama de trabajo | Responsable de publicación previsto |
+| Carpeta | Primera vez | Ejecutar |
 | --- | --- | --- |
-| API y base de datos | feature/sebastian-api | sebastianCondori13 |
-| Web React | feature/adrian-web | AdrianSVJ |
-| App React Native | feature/facundo-mobile | facundorojasgastanaga-dev |
-| Pruebas, documentación y configuración de integración | chore/integracion-pruebas | Trabajo compartido |
+| backend/SportHub.Api | dotnet restore | dotnet run |
+| web | npm ci | npm run dev |
+| mobile | npm ci | npx expo start --lan |
 
-`dev` concentra la integración. `main` se reservará para la entrega integrada después de revisar los cambios y las comprobaciones. El reparto organiza la publicación del código existente; los mensajes de commit describen los archivos incorporados en cada turno.
+Web: http://localhost:5173 · API: http://localhost:5080 · Swagger: http://localhost:5080/swagger.
 
-Consulta [PLAN_PUBLICACION.md](PLAN_PUBLICACION.md) para ver el alcance de cada bloque.
+Admin: **admin@sporthub.com** · contraseña **SportHub2026!**. Vendedor: **vendedor@sporthub.com** con la misma contraseña. Los datos demo se generan solamente en Development.
+
+En el teléfono abre Dirección de la API e ingresa http://IP_DE_TU_PC:5080/api. Primero comprueba http://IP_DE_TU_PC:5080/health desde su navegador. Usa la misma red local.
+
+## Documentación
+
+- docs/GUIA_PASO_A_PASO.html: instalación completa, uso, solución de errores y defensa.
+- docs/ARQUITECTURA.md y docs/MODELO_DATOS.svg: diseño y relaciones.
+- backend/database/schema.sql: script de creación de las cuatro tablas.
+- docs/TRABAJO_EN_EQUIPO.md: ramas y aportes reales.
+- docs/MATRIZ_REQUISITOS.md: correspondencia con el enunciado.
+- docs/VALIDACION.md: pruebas realizadas y límites de verificación.
+
+El ZIP no contiene node_modules, bin, obj, claves JWT, base con datos personales ni historial Git inventado. npm ci y dotnet restore recuperan dependencias. Las ilustraciones web son SVG locales y no requieren un servidor de imágenes.
+
+## Repositorio y publicación
+
+Repositorio: https://github.com/sebastianCondori13/Examen_Web_3. Los cuatro bloques son API, web, móvil y pruebas/documentación. Se importan desde el ZIP revisado mediante ramas de trabajo y pull requests hacia `dev`, antes de la integración en `main`. La publicación se realiza con la cuenta conectada `sebastianCondori13`; los nombres de las ramas organizan los módulos del equipo. Consulta [PLAN_PUBLICACION.md](PLAN_PUBLICACION.md).
