@@ -1,0 +1,29 @@
+@base = http://localhost:5080
+@token = PEGA_AQUI_EL_TOKEN_DEL_LOGIN
+
+### Salud
+GET {{base}}/health
+
+### Login
+POST {{base}}/api/auth/login
+Content-Type: application/json
+
+{"email":"admin@sporthub.com","password":"SportHub2026!"}
+
+### Catálogo protegido
+GET {{base}}/api/products
+Authorization: Bearer {{token}}
+
+### Crear producto
+POST {{base}}/api/products
+Authorization: Bearer {{token}}
+Content-Type: application/json
+
+{"name":"Producto de prueba","description":"Prueba API","price":120.50,"stock":10,"category":"Accesorios","brand":"Nova","color":"#ad92ff"}
+
+### Crear venta con producto existente
+POST {{base}}/api/sales
+Authorization: Bearer {{token}}
+Content-Type: application/json
+
+{"customerName":"Cliente de prueba","notes":"Prueba HTTP","items":[{"productId":1,"quantity":2}]}

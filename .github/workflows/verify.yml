@@ -1,0 +1,30 @@
+name: Verificar SportHub
+on: [push, pull_request]
+permissions:
+  contents: read
+jobs:
+  verify:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-dotnet@v4
+        with:
+          dotnet-version: '10.0.x'
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '24'
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - run: python tests/verify_local.py
+      - name: Validar API con formato decimal en español
+        run: python tests/verify_local.py
+        env:
+          LANG: es_ES.UTF-8
+          LC_ALL: es_ES.UTF-8
+      - run: npm ci && npm run build
+        working-directory: web
+      - run: npm ci && npx expo install --check && npx expo export --platform android
+        working-directory: mobile
+        env:
+          CI: '1'
