@@ -1,0 +1,16 @@
+{
+  "expo": {
+    "name": "SportHub",
+    "slug": "sporthub-mobile",
+    "version": "1.0.0",
+    "orientation": "portrait",
+    "userInterfaceStyle": "dark",
+    "android": {
+      "package": "com.sporthub.mobile",
+      "usesCleartextTraffic": true
+    },
+    "plugins": [
+      "expo-secure-store"
+    ]
+  }
+}
